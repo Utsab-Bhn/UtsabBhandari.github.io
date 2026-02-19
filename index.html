@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Utsab Bhandari — SEO Content Writer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #1a1208;
+    --cream: #f5f0e8;
+    --gold: #c8922a;
+    --rust: #b84c2b;
+    --pale: #ede8de;
+    --muted: #8a7f6e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 4rem;
+    background: rgba(245,240,232,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,146,42,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 6rem 6rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.8rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 400px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.85rem 2rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.25s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--rust); transform: translateY(-2px); }
+
+  .btn-outline {
+    color: var(--ink);
+    padding: 0.85rem 2rem;
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--ink);
+    transition: border-color 0.25s, color 0.25s, transform 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-graphic {
+    position: absolute;
+    inset: 0;
+    background: var(--pale);
+    clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .hero-stats {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    gap: 2rem;
+    padding: 4rem;
+  }
+
+  .stat-card {
+    background: var(--cream);
+    border: 1px solid rgba(200,146,42,0.25);
+    padding: 1.8rem 2.2rem;
+    position: relative;
+    animation: fadeUp 0.7s both;
+  }
+
+  .stat-card:nth-child(1) { animation-delay: 0.2s; margin-left: 0; }
+  .stat-card:nth-child(2) { animation-delay: 0.35s; margin-left: 2.5rem; }
+  .stat-card:nth-child(3) { animation-delay: 0.5s; margin-left: 1rem; }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 7rem 6rem; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--pale);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--ink); color: var(--cream); }
+
+  #skills .section-num { color: rgba(255,255,255,0.08); }
+  #skills .section-title { color: var(--cream); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-pill {
+    border: 1px solid rgba(200,146,42,0.3);
+    padding: 1.4rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: border-color 0.25s, background 0.25s;
+    cursor: default;
+  }
+
+  .skill-pill:hover {
+    border-color: var(--gold);
+    background: rgba(200,146,42,0.08);
+  }
+
+  .skill-dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .skill-name {
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--cream); }
+
+  .timeline {
+    position: relative;
+    padding-left: 3rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 4rem;
+    animation: fadeUp 0.6s both;
+  }
+
+  .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+  .timeline-item:nth-child(2) { animation-delay: 0.3s; }
+
+  .timeline-dot {
+    position: absolute;
+    left: -3.35rem;
+    top: 0.3rem;
+    width: 12px; height: 12px;
+    background: var(--gold);
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+
+  .timeline-meta {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-company {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+
+  .timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .timeline-bullets li {
+    font-size: 0.92rem;
+    color: var(--muted);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .timeline-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.75rem;
+  }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--pale); }
+
+  .edu-card {
+    background: var(--cream);
+    border: 1px solid rgba(200,146,42,0.2);
+    padding: 3rem 3.5rem;
+    max-width: 680px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .edu-card::after {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 12rem;
+    color: rgba(200,146,42,0.06);
+    position: absolute;
+    right: -1rem;
+    bottom: -3rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .edu-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .edu-school {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .gpa-row {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .gpa-chip {
+    background: var(--pale);
+    border: 1px solid rgba(200,146,42,0.25);
+    padding: 0.4rem 0.9rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+    padding: 8rem 6rem;
+  }
+
+  #contact .section-title { color: var(--cream); font-size: 3rem; margin-bottom: 0.5rem; }
+
+  .contact-sub {
+    color: var(--muted);
+    margin-bottom: 3rem;
+    font-size: 1rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .contact-link {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(200,146,42,0.4);
+    padding-bottom: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .contact-link:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: var(--muted);
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* ── ARTICLES HERO ── */
+  .article-cat {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .article-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-decoration: none;
+    color: var(--cream);
+    border: 1px solid rgba(200,146,42,0.2);
+    margin-bottom: 2rem;
+    overflow: hidden;
+    transition: border-color 0.3s;
+    min-height: 420px;
+  }
+
+  .article-hero:hover { border-color: var(--gold); }
+
+  .article-hero-img {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .article-hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .article-hero:hover .article-hero-img img { transform: scale(1.04); }
+
+  .article-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26,18,8,0.3), transparent);
+    pointer-events: none;
+  }
+
+  .article-hero-body {
+    padding: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    background: rgba(255,255,255,0.03);
+    border-left: 3px solid var(--gold);
+  }
+
+  .article-hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--cream);
+  }
+
+  .article-hero-excerpt {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.8;
+  }
+
+  .article-read-link {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 0.5rem;
+    transition: letter-spacing 0.3s;
+  }
+
+  .article-hero:hover .article-read-link { letter-spacing: 0.2em; }
+
+  /* ── ARTICLES GRID V2 ── */
+  .articles-grid-v2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .article-card-v2 {
+    text-decoration: none;
+    color: var(--cream);
+    border: 1px solid rgba(200,146,42,0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s, transform 0.3s;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .article-card-v2:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+  }
+
+  .acv2-img-wrap {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .acv2-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .article-card-v2:hover .acv2-img-wrap img { transform: scale(1.07); }
+
+  .acv2-body {
+    padding: 1.4rem 1.6rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    border-top: 2px solid rgba(200,146,42,0.25);
+    transition: border-color 0.3s;
+  }
+
+  .article-card-v2:hover .acv2-body { border-color: var(--gold); }
+
+  .acv2-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.45;
+    color: var(--cream);
+    flex: 1;
+  }
+
+  .acv2-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.6rem;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .acv2-views {
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-left { animation: fadeUp 0.8s both 0.1s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 5rem 2rem 4rem; }
+    section { padding: 5rem 2rem; }
+    #contact { padding: 5rem 2rem; }
+    .article-hero { grid-template-columns: 1fr; min-height: auto; }
+    .article-hero-img { height: 220px; }
+    .article-hero-body { padding: 2rem; border-left: none; border-top: 3px solid var(--gold); }
+    .article-hero-title { font-size: 1.4rem; }
+    .articles-grid-v2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Utsab Bhandari</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">SEO Content Writer · Kathmandu</p>
+    <h1>Words that<br><em>rank.</em><br>Stories that<br>stick.</h1>
+    <p class="hero-desc">Results-driven writer crafting search-optimized content that improves visibility, drives organic traffic, and genuinely engages readers.</p>
+    <div class="hero-ctas">
+      <a href="#experience" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Let's Connect</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-graphic"></div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Roles in Content & SEO</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1st</div>
+        <div class="stat-label">Page Rankings Achieved</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">B.Sc.</div>
+        <div class="stat-label">IT — Expected 2027</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Skills & Tools</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-pill"><div class="skill-dot"></div><span class="skill-name">SEO Content Writing</span></div>
+    <div class="skill-pill"><div class="skill-dot"></div><span class="skill-name">On-page SEO</span></div>
+    <div class="skill-pill"><div class="skill-dot"></div><span class="skill-name">Keyword Research</span></div>
+    <div class="skill-pill"><div class="skill-dot"></div><span class="skill-name">Content Development</span></div>
+    <div class="skill-pill"><div class="skill-dot"></div><span class="skill-name">WordPress CMS</span></div>
+    <div class="skill-pill"><div class="skill-dot"></div><span class="skill-name">HTML & CSS</span></div>
+    <div class="skill-pill"><div class="skill-dot"></div><span class="skill-name">JavaScript</span></div>
+    <div class="skill-pill"><div class="skill-dot"></div><span class="skill-name">Google Docs</span></div>
+    <div class="skill-pill"><div class="skill-dot"></div><span class="skill-name">Communication</span></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Experience</h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <p class="timeline-meta">Jun 2025 – Aug 2025</p>
+      <h3 class="timeline-role">SEO Content Writer</h3>
+      <p class="timeline-company">The Spotlight Magazine · Remote, Kathmandu</p>
+      <ul class="timeline-bullets">
+        <li>Crafted SEO-optimized articles and editorials on social and national issues, improving discoverability and engagement.</li>
+        <li>Conducted keyword research and implemented on-page SEO best practices to boost organic rankings.</li>
+        <li>Utilized WordPress CMS to create, edit, and publish content aimed at improving web traffic.</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <p class="timeline-meta">Jul 2025 – Sep 2025</p>
+      <h3 class="timeline-role">Content Writer Intern</h3>
+      <p class="timeline-company">UpSkills Nepal · Kathmandu</p>
+      <ul class="timeline-bullets">
+        <li>Produced SEO-optimized blogs, product descriptions, and newsletters for national and international clients.</li>
+        <li>Helped client blogs reach the first page of Google through targeted content and on-page tactics.</li>
+        <li>Participated in content-strategy meetings to improve quality and consistency.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLISHED WORK -->
+<section id="work" style="background: var(--ink); color: var(--cream); padding-bottom: 6rem;">
+  <div class="section-header">
+    <span class="section-num" style="color:rgba(255,255,255,0.07);">03</span>
+    <h2 class="section-title" style="color:var(--cream);">Published Work</h2>
+  </div>
+  <p style="color:var(--muted); margin-top:-2.5rem; margin-bottom:3.5rem; font-size:0.88rem; letter-spacing:0.08em; text-transform:uppercase;">6 Articles · <a href="https://thespotlightmag.com/author/utsab-bhandari/" target="_blank" style="color:var(--gold); text-decoration:none;">The Spotlight Magazine</a></p>
+
+  <!-- FEATURED HERO ARTICLE -->
+  <a class="article-hero" href="https://thespotlightmag.com/nepals-dark-political-paradox-illiteracy-and-politics/" target="_blank">
+    <div class="article-hero-img">
+      <img src="https://thespotlightmag.com/wp-content/uploads/2025/07/Puppet-768x1152.png" alt="Nepal Political Paradox"/>
+      <div class="article-hero-overlay"></div>
+    </div>
+    <div class="article-hero-body">
+      <span class="article-cat" style="font-size:0.7rem;">Editorial · July 3, 2025</span>
+      <h3 class="article-hero-title">Nepal's Dark Political Paradox — Illiteracy and Politics</h3>
+      <p class="article-hero-excerpt">A nation so rich in minds, yet starving in knowledge. Exploring how illiteracy fuels Nepal's political cycle.</p>
+      <span class="article-read-link">Read Article →</span>
+    </div>
+  </a>
+
+  <!-- REMAINING 5 IN GRID -->
+  <div class="articles-grid-v2">
+
+    <a class="article-card-v2" href="https://thespotlightmag.com/how-indian-movies-stereotype-and-misrepresent-nepali-identity/" target="_blank">
+      <div class="acv2-img-wrap">
+        <img src="https://thespotlightmag.com/wp-content/uploads/2025/07/pic-stereo-1024x513.png" alt="Stereotype"/>
+      </div>
+      <div class="acv2-body">
+        <span class="article-cat">Film & TV</span>
+        <h4 class="acv2-title">How Indian Movies Stereotype and Misrepresent Nepali Identity</h4>
+        <div class="acv2-meta">
+          <span>July 22, 2025</span>
+          <span class="acv2-views">1,267 views</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="article-card-v2" href="https://thespotlightmag.com/the-forgotten-beauty-of-lok-dohori-it-still-matters/" target="_blank">
+      <div class="acv2-img-wrap">
+        <img src="https://thespotlightmag.com/wp-content/uploads/2025/07/Battle-lok-1-1024x683.png" alt="Lok Dohori"/>
+      </div>
+      <div class="acv2-body">
+        <span class="article-cat">Culture</span>
+        <h4 class="acv2-title">The Forgotten Beauty of Lok Dohori — It Still Matters</h4>
+        <div class="acv2-meta">
+          <span>July 22, 2025</span>
+          <span class="acv2-views">1,464 views</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="article-card-v2" href="https://thespotlightmag.com/i-miss-my-old-self-my-journey-from-then-to-now/" target="_blank">
+      <div class="acv2-img-wrap">
+        <img src="https://thespotlightmag.com/wp-content/uploads/2025/07/Miss-768x1152.png" alt="I Miss My Old Self"/>
+      </div>
+      <div class="acv2-body">
+        <span class="article-cat">Into the Spotlight</span>
+        <h4 class="acv2-title">I Miss My Old Self — My Journey From Then to Now</h4>
+        <div class="acv2-meta">
+          <span>July 14, 2025</span>
+          <span class="acv2-views">835 views</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="article-card-v2" href="https://thespotlightmag.com/maladaptive-daydreaming-a-surprising-mental-trap-you-can-break-free-from/" target="_blank">
+      <div class="acv2-img-wrap">
+        <img src="https://thespotlightmag.com/wp-content/uploads/2025/07/Daydreaming-768x768.png" alt="Maladaptive Daydreaming"/>
+      </div>
+      <div class="acv2-body">
+        <span class="article-cat">Wellness</span>
+        <h4 class="acv2-title">Maladaptive Daydreaming — A Surprising Mental Trap You Can Break Free From</h4>
+        <div class="acv2-meta">
+          <span>July 7, 2025</span>
+          <span class="acv2-views">734 views</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="article-card-v2" href="https://thespotlightmag.com/ultimate-guide-to-the-art-of-doing-nothing/" target="_blank">
+      <div class="acv2-img-wrap">
+        <img src="https://thespotlightmag.com/wp-content/uploads/2025/07/Nothing-768x1152.png" alt="Art of Doing Nothing"/>
+      </div>
+      <div class="acv2-body">
+        <span class="article-cat">Into the Spotlight</span>
+        <h4 class="acv2-title">Ultimate Guide to the Art of Doing Nothing</h4>
+        <div class="acv2-meta">
+          <span>July 5, 2025</span>
+          <span class="acv2-views">570 views</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-card">
+    <h3 class="edu-degree">B.Sc. in Information Technology</h3>
+    <p class="edu-school">Patan Multiple Campus, Lalitpur · Nov 2022 – Expected Jan 2027</p>
+    <p style="font-size:0.9rem; color:var(--muted);">Active in club activities and college programs. Blending tech fundamentals with content strategy skills.</p>
+    <div class="gpa-row">
+      <span class="gpa-chip">Sem 1 · 3.46</span>
+      <span class="gpa-chip">Sem 2 · 3.38</span>
+      <span class="gpa-chip">Sem 3 · 3.12</span>
+      <span class="gpa-chip">Sem 4 · 3.06</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header" style="justify-content:center; margin-bottom:1rem;">
+    <span class="section-num" style="color:rgba(255,255,255,0.06);">05</span>
+    <h2 class="section-title">Let's Work Together</h2>
+  </div>
+  <p class="contact-sub">Open to freelance projects, collaborations, and full-time opportunities.</p>
+  <a href="mailto:bhnutsab@gmail.com" class="btn-primary" style="font-size:1rem; padding:1rem 2.5rem;">bhnutsab@gmail.com</a>
+  <div class="contact-links">
+    <a href="tel:+9779840600474" class="contact-link">+977 984 060 0474</a>
+    <a href="https://linkedin.com" target="_blank" class="contact-link">LinkedIn Profile</a>
+    <a href="mailto:bhnutsab@gmail.com" class="contact-link">Send Email</a>
+  </div>
+</section>
+
+<footer>© 2025 Utsab Bhandari · SEO Content Writer · Kathmandu, Nepal</footer>
+
+</body>
+</html>
